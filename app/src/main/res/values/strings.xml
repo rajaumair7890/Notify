@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Notify</string>
+    <string name="search_place_holder">Search your Notes!</string>
+    <string name="add_a_new_note">Add a new Note</string>
+    <string name="add_image">Add Image</string>
+    <string name="add_drawing">Add Drawing</string>
+    <string name="add_checkList">Add Check List</string>
+    <string name="back">Go Back</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="more_options">More Options</string>
+    <string name="pen">Pen</string>
+    <string name="erase">Erase</string>
+    <string name="change_color">Change Color</string>
+    <string name="Change_brush_Stroke">Change Brush Stroke Width</string>
+    <string name="brush">Brush</string>
+    <string name="select">Select</string>
+    <string name="dark_canvas">Dark Canvas</string>
+    <string name="clear_canvas">Clear_Canvas</string>
+    <string name="dotted_Stroke">Toggle Dotted Stroke</string>
+    <string name="checked_items">Checked Items</string>
+    <string name="add_new_list_item">Add new list item</string>
+    <string name="title">Title</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="add_Image">Add Image</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="note_saved">Note Saved Successfully</string>
+    <string name="note_discarded">Empty Note Discarded</string>
+    <string name="confirm_deletion">Delete Selected Note?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+</resources>
