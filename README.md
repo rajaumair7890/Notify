@@ -10,6 +10,8 @@ Notify offers a range of powerful features to enhance your note-taking experienc
 
 Easily jot down your thoughts, ideas, and reminders with the simple note feature. Keep your thoughts organized and quickly access them whenever you need.
 
+![ScreenShot](/Screenshot_20230605-211649_Notify.png)
+
 # Canvas Drawing
 
 Express your creativity with the canvas drawing feature. Whether you want to sketch an idea or create a beautiful piece of art, Notify provides you with a full range of drawing tools and a wide selection of colors to choose from.
