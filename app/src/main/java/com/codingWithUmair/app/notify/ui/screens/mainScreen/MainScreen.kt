@@ -1,7 +1,8 @@
 package com.codingWithUmair.app.notify.ui.screens.mainScreen
 
-
 import androidx.compose.animation.*
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -32,7 +33,6 @@ import com.codingWithUmair.app.notify.model.NoteType
 import com.codingWithUmair.app.notify.model.User
 import com.codingWithUmair.app.notify.ui.screens.utils.backgroundColors
 
-
 @Composable
 fun MainScreen(
 	user: User,
@@ -56,7 +56,18 @@ fun MainScreen(
 
 	var confirmDeleteDialogState by remember{ mutableStateOf(false) }
 
+	val lazyStaggeredGridState = rememberLazyStaggeredGridState()
+
+	val isScrollingUp = lazyStaggeredGridState.isScrollingUp()
+
 	Scaffold(
+		topBar = {
+			Box(
+				modifier
+					.fillMaxWidth()
+					.background(Color.Transparent)
+			)
+		},
 		bottomBar = {
 			NotifyBottomBar(
 				onAddImageClick = { addImagePopUpState = true },
@@ -69,41 +80,61 @@ fun MainScreen(
 				onClick = onAddNoteClick,
 				elevation = FloatingActionButtonDefaults.elevation(12.dp)
 			) {
-				Icon(
-					Icons.Default.Add,
-					tint = MaterialTheme.colorScheme.onPrimaryContainer,
-					contentDescription = stringResource(
-						id = R.string.add_a_new_note
+				Row(
+					horizontalArrangement = Arrangement.Center,
+					verticalAlignment = Alignment.CenterVertically,
+					modifier = Modifier.animateContentSize()
+				){
+					Icon(
+						Icons.Default.Add,
+						contentDescription = stringResource(
+							id = R.string.add_a_new_note
+						),
+						modifier = Modifier.padding(6.dp)
 					)
-				)
+					if(isScrollingUp){
+						Text(text = stringResource(id = R.string.add_note), modifier = Modifier.padding(6.dp))
+					}
+				}
+
 			}
 		},
 		floatingActionButtonPosition = FabPosition.End,
 	){paddingValues ->
-		Box(modifier = modifier.fillMaxSize()){
-			Column(
-				modifier = modifier.padding(paddingValues)
-			) {
-				SearchBar(
-					searchTerm = searchTerm,
-					onSearchTermChange = onSearchTermChange,
-					user = user,
-					onUserIconClick = onUserIconClick,
-					modifier = modifier
-						.fillMaxWidth()
-						.padding(top = 6.dp, bottom = 6.dp, start = 12.dp, end = 12.dp)
-				)
-
-				NotesGrid(
-					notes = allNotes,
-					onNoteClick = onNoteClick,
-					onNoteDeleteClick = {
-						confirmDeleteDialogState = true
-						onNoteDeleteClick(it)
-					},
-					isDarkTheme = isDarkTheme
-				)
+		Box(modifier = modifier
+			.fillMaxSize()
+			.padding(paddingValues)){
+			NotesGrid(
+				notes = allNotes,
+				onNoteClick = onNoteClick,
+				onNoteDeleteClick = {
+					confirmDeleteDialogState = true
+					onNoteDeleteClick(it)
+				},
+				lazyStaggeredGridState = lazyStaggeredGridState,
+				isDarkTheme = isDarkTheme
+			)
+			Box(modifier = Modifier.matchParentSize(), contentAlignment = Alignment.TopCenter){
+				AnimatedVisibility(
+					visible = isScrollingUp,
+					enter = slideInVertically(tween(100, 0, LinearEasing)),
+					exit = slideOutVertically(tween(100, 0, LinearEasing))
+				) {
+					Column{
+						Spacer(modifier = Modifier.height(30.dp))
+						SearchBar(
+							searchTerm = searchTerm,
+							onSearchTermChange = onSearchTermChange,
+							user = user,
+							onUserIconClick = onUserIconClick,
+							modifier = modifier
+								.fillMaxWidth()
+								.padding(vertical = 6.dp, horizontal = 24.dp)
+						)
+					}
+				}
 			}
+
 			if(addImagePopUpState){
 				Popup(
 					alignment = Alignment.Center,
@@ -135,23 +166,26 @@ fun MainScreen(
 			}
 		}
 	}
-
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NotesGrid(
 	notes: List<Note>,
 	onNoteClick: (Note) -> Unit,
 	onNoteDeleteClick: (Note) -> Unit,
 	isDarkTheme: Boolean,
+	lazyStaggeredGridState: LazyStaggeredGridState,
 	modifier: Modifier = Modifier
 ){
 	LazyVerticalStaggeredGrid(
+		state = lazyStaggeredGridState,
 		columns = StaggeredGridCells.Fixed(2),
 		contentPadding = PaddingValues(8.dp),
 		modifier = modifier
 	){
+		items(2){
+			Spacer(modifier = Modifier.height(88.dp))
+		}
 		items(notes){ note ->
 			NoteCard(
 				note = note,
@@ -224,6 +258,7 @@ fun SearchBar(
 	onUserIconClick: (User) -> Unit,
 	modifier: Modifier = Modifier
 ){
+
 	OutlinedTextField(
 		value = searchTerm,
 		onValueChange = onSearchTermChange,
@@ -258,12 +293,12 @@ fun SearchBar(
 		},
 		shape = RoundedCornerShape(50.dp),
 		colors = OutlinedTextFieldDefaults.colors(
-			focusedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.05f),
-			unfocusedContainerColor =  MaterialTheme.colorScheme.primary.copy(alpha = 0.05f),
+			focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+			unfocusedContainerColor =  MaterialTheme.colorScheme.surfaceVariant,
 			focusedBorderColor = Color.Transparent,
 			unfocusedBorderColor = Color.Transparent
 		),
-		modifier = modifier
+		modifier = modifier.height(53.dp)
 	)
 }
 
@@ -321,7 +356,9 @@ private fun ListNoteLayout(
 	description: String
 ){
 	Row(
-		modifier = Modifier.fillMaxWidth().padding(12.dp)
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(12.dp)
 	) {
 		Checkbox(checked = isChecked, onCheckedChange = null)
 		Text(
@@ -430,5 +467,24 @@ fun ConfirmDeleteDialog(
 			Text(text = stringResource(id = R.string.confirm_deletion))
 		}
 	)
+}
+
+@Composable
+private fun LazyStaggeredGridState.isScrollingUp(): Boolean{
+	var previousIndex by remember(this){ mutableIntStateOf(firstVisibleItemIndex) }
+	var previousScrollOffset by remember(this){ mutableIntStateOf(firstVisibleItemScrollOffset) }
+
+	return remember(this){
+		derivedStateOf {
+			if(previousIndex != firstVisibleItemIndex){
+				previousIndex > firstVisibleItemIndex
+			}else{
+				previousScrollOffset >= firstVisibleItemScrollOffset
+			}.also {
+				previousIndex = firstVisibleItemIndex
+				previousScrollOffset = firstVisibleItemScrollOffset
+			}
+		}
+	}.value
 }
 
