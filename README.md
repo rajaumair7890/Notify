@@ -2,7 +2,9 @@
 
 Welcome to Notify, the feature-rich Android note app that helps you stay organized and capture your thoughts, ideas, and reminders in various formats. With Notify, you can take simple notes, create drawings on a canvas with full access to features and colors, add photos from your camera or gallery, and manage list notes for shopping or tracking items. Customize your note-taking experience by changing background colors for different note types.
 
-![ScreenShot](/Screenshot_20230605-212131_Notify.png)
+<p align="center">
+  <img src="Screenshot_20230605-212131_Notify.png" alt="Screenshot 1" width="350" />
+</p>
 
 # Features
 
@@ -12,7 +14,9 @@ Notify offers a range of powerful features to enhance your note-taking experienc
 
 Easily jot down your thoughts, ideas, and reminders with the simple note feature. Keep your thoughts organized and quickly access them whenever you need.
 
-![ScreenShot](/Screenshot_20230605-211649_Notify.png)
+<p align="center">
+  <img src="Screenshot_20230605-211649_Notify.png" alt="Screenshot 1" width="350" />
+</p>
 
 # Canvas Drawing
 
@@ -38,7 +42,9 @@ Capture the moment or add visual context to your notes with the photo integratio
 
 Stay organized and keep track of your tasks, shopping lists, or any other list-based notes with Notify's list note feature. Easily create lists and check or uncheck items as you complete them. Prioritize your tasks and ensure nothing slips through the cracks.
 
-![ScreenShot](/Screenshot_20230605-215148_Notify.png)
+<p align="center">
+  <img src="Screenshot_20230605-215148_Notify.png" alt="Screenshot 1" width="350" />
+</p>
 
 # Customization Options
 
