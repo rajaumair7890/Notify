@@ -2,9 +2,7 @@
 
 Welcome to Notify, the feature-rich Android note app that helps you stay organized and capture your thoughts, ideas, and reminders in various formats. With Notify, you can take simple notes, create drawings on a canvas with full access to features and colors, add photos from your camera or gallery, and manage list notes for shopping or tracking items. Customize your note-taking experience by changing background colors for different note types.
 
-<p align="center">
-  <img src="Screenshot_20230605-212131_Notify.png" alt="Screenshot 1" width="350" />
-</p>
+![ScreenShot](/NotifyCover.png)
 
 # Features
 
@@ -14,37 +12,17 @@ Notify offers a range of powerful features to enhance your note-taking experienc
 
 Easily jot down your thoughts, ideas, and reminders with the simple note feature. Keep your thoughts organized and quickly access them whenever you need.
 
-<p align="center">
-  <img src="Screenshot_20230605-211649_Notify.png" alt="Screenshot 1" width="350" />
-</p>
-
 # Canvas Drawing
 
 Express your creativity with the canvas drawing feature. Whether you want to sketch an idea or create a beautiful piece of art, Notify provides you with a full range of drawing tools and a wide selection of colors to choose from.
-
-<p align="center">
-  <img src="Screenshot_20230605-211533_Notify.png" alt="Screenshot 1" width="250" />
-  <img src="Screenshot_20230605-211550_Notify.png" alt="Screenshot 2" width="250" />
-  <img src="Screenshot_20230605-215203_Notify.png" alt="Screenshot 3" width="250" />
-</p>
 
 # Photo Integration
 
 Capture the moment or add visual context to your notes with the photo integration feature. Take photos directly from the app using your device's camera, or select existing photos from your gallery to include in your notes.
 
-<p align="center">
-  <img src="Screenshot_20230605-211706_Notify.png" alt="Screenshot 1" width="250" />
-  <img src="Screenshot_20230605-215210_Notify.png" alt="Screenshot 2" width="250" />
-  <img src="Screenshot_20230605-215259_Notify.png" alt="Screenshot 3" width="250" />
-</p>
-
 # List Notes
 
 Stay organized and keep track of your tasks, shopping lists, or any other list-based notes with Notify's list note feature. Easily create lists and check or uncheck items as you complete them. Prioritize your tasks and ensure nothing slips through the cracks.
-
-<p align="center">
-  <img src="Screenshot_20230605-215148_Notify.png" alt="Screenshot 1" width="350" />
-</p>
 
 # Customization Options
 
